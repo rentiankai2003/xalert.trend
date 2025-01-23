@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xalert - Advanced AI Alerts</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+  <!-- Example font face (Artypa). Replace with a valid font file if available. -->
+  <style>
+    @font-face {
+      font-family: 'Artypa';
+      src: url('Artypa.woff2') format('woff2'),
+           url('Artypa.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+  </style>
+
+  <!-- 您可以暂时保留这句 Mailchimp 默认 CSS，也可以去掉后再在自己的CSS里完全自定义表单样式 -->
+  <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
+
+  <style>
+    /* ------------------------------
+       页面整体的自定义样式
+    -------------------------------- */
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      height: 100%;
+      background: linear-gradient(270deg, #000000, #333333, #000000);
+      background-size: 800% 800%;
+      animation: gradientShift 60s ease infinite;
+      color: #FFD700;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 0 1rem;
+      background: transparent;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 3rem;
+      font-family: 'Artypa', Arial, sans-serif;
+      color: #FFD700;
+    }
+
+    header p {
+      margin: 0.5rem 0 0;
+      font-size: 1.2rem;
+      font-family: 'Artypa', Arial, sans-serif;
+      color: #FFD700;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .section {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .section h2 {
+      margin-top: 0;
+      font-size: 1.8rem;
+      font-family: 'Artypa', Arial, sans-serif;
+      color: #FFD700;
+    }
+
+    .section p,
+    .section ul,
+    .section li {
+      color: #FFD700;
+      font-family: Arial, sans-serif;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .buttons a {
+      text-decoration: none;
+      padding: 0.8rem 1.5rem;
+      color: #FFD700;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: background 0.3s;
+    }
+
+    .buttons a:hover {
+      background: rgba(0, 0, 0, 0.9);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      background: transparent;
+      margin-top: 2rem;
+    }
+
+    footer p {
+      margin: 0;
+      color: #FFD700;
+    }
+
+    /* ---------------------------------------
+       Mailchimp 表单相关的可选自定义样式覆盖
+       您可以进一步调整让表单风格更一致
+    ----------------------------------------- */
+    #mc_embed_signup {
+      background: transparent; /* 去掉默认白色背景 */
+      color: #FFD700;
+      /* 这行“false”是多余自动生成的属性，可去掉 */
+      /* 宽度可以根据您需要修改 */
+      width: 100%;
+      font-family: 'Artypa', Arial, sans-serif;
+      border: none;
+      padding: 1rem;
+    }
+
+    #mc_embed_signup .mc-field-group label {
+      color: #FFD700;
+      font-weight: bold;
+    }
+
+    #mc_embed_signup .required.email {
+      background: rgba(255,255,255,0.2);
+      border: 1px solid #ffd700;
+      color: #FFD700;
+      padding: 0.5rem;
+      margin-top: 0.2rem;
+      border-radius: 4px;
+      width: 100%;
+      max-width: 400px; /* 让输入框宽度限制一下 */
+    }
+
+    #mc_embed_signup .button {
+      background: rgba(0, 0, 0, 0.7);
+      color: #FFD700;
+      border: 1px solid #FFD700;
+      border-radius: 4px;
+      padding: 0.6rem 1.2rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #mc_embed_signup .button:hover {
+      background: rgba(0, 0, 0, 0.9);
+    }
+
+    /* 隐藏 Mailchimp 自带的“indicates-required”小提示或其他默认提示 */
+    #mc_embed_signup .indicates-required {
+      display: none;
+    }
+
+    /* 您也可以隐藏 Mailchimp 自带的徽标 */
+    #mc_embed_signup .refferal_badge {
+      display: none; /* 根据需要隐藏 */
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Xalert</h1>
+    <p>Advanced AI-Powered Alerts Platform</p>
+  </header>
+
+  <div class="container">
+    <!-- About 区域 -->
+    <section class="section">
+      <h2>About Xalert</h2>
+      <p>
+        Xalert provides real-time AI-driven alerts to keep you informed and ahead
+        of potential threats and opportunities. From financial insights to security warnings, Xalert
+        ensures you stay prepared with cutting-edge technology.
+      </p>
+    </section>
+
+    <!-- Beta Features 区域 -->
+    <section class="section">
+      <h2>Beta Features & How It Works</h2>
+      <ul>
+        <li>Advanced AI-Powered Risk and Opportunity Alerts Platform.</li>
+        <li>Integration with Telegram and Discord for real-time notifications.</li>
+        <li>Newsletter Alerts to receive timely notifications about critical events.</li>
+      </ul>
+    </section>
+
+    <!-- Get Connected 区域 -->
+    <section class="section">
+      <h2>Get Connected</h2>
+      <p>Join our community and stay updated:</p>
+      <div class="buttons">
+        <a href="https://discord.gg/tqy4raym" target="_blank">Join Our Discord</a>
+        <a href="https://t.me/your-telegram-link" target="_blank">Join Our Telegram</a>
+      </div>
+      <p style="margin-top: 1rem;">
+        If you want to customize your own market monitoring tool or trading tool module, please contact
+        <strong>xalert.trend@gmail.com</strong>
+      </p>
+    </section>
+
+    <!-- 订阅区域：在这里放入 Mailchimp 表单 -->
+    <section class="section subscribe-section">
+      <h2>Subscribe to Our Newsletter</h2>
+      <p>Sign up to get the latest AI risk alerts and news delivered to your inbox.</p>
+
+      <!-- 这里粘贴 Mailchimp 代码 -->
+      <div id="mc_embed_shell">
+        <div id="mc_embed_signup">
+          <!-- 注意：此处的 action URL 必须和您 Mailchimp 代码中的完全一致 -->
+          <form action="https://gmail.us3.list-manage.com/subscribe/post?u=0fe18db96871df06c2c7460d4&amp;id=839fb3740e&amp;f_id=005dc5e1f0"
+                method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
+                class="validate" target="_blank">
+            <div id="mc_embed_signup_scroll">
+              <!-- 取消注释下方这行可显示“必填提示” -->
+              <!-- <div class="indicates-required"><span class="asterisk">*</span> indicates required</div> -->
+
+              <div class="mc-field-group">
+                <label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label>
+                <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required value="">
+              </div>
+
+              <!-- 这部分是 Mailchimp 用来显示错误或成功消息的区域 -->
+              <div id="mce-responses" class="clear foot">
+                <div class="response" id="mce-error-response" style="display: none;"></div>
+                <div class="response" id="mce-success-response" style="display: none;"></div>
+              </div>
+
+              <!-- 防止bot自动提交 -->
+              <div aria-hidden="true" style="position: absolute; left: -5000px;">
+                <input type="text" name="b_0fe18db96871df06c2c7460d4_839fb3740e" tabindex="-1" value="">
+              </div>
+
+              <div class="optionalParent">
+                <div class="clear foot">
+                  <input type="submit" name="subscribe" id="mc-embedded-subscribe"
+                         class="button" value="Subscribe">
+                  <!-- 这部分是 Mailchimp 自带的品牌徽标，可以自行隐藏或保留 -->
+                  <p style="margin: 0px auto;">
+                    <a href="http://eepurl.com/i8nfww" title="Mailchimp - email marketing made easy and fun">
+                      <span style="display: inline-block; background-color: transparent; border-radius: 4px;">
+                        <img class="refferal_badge"
+                             src="https://digitalasset.intuit.com/render/content/dam/intuit/mc-fe/en_us/images/intuit-mc-rewards-text-dark.svg"
+                             alt="Intuit Mailchimp"
+                             style="width: 220px; height: 40px; display: flex; padding: 2px 0px; justify-content: center; align-items: center;">
+                      </span>
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div> <!-- end #mc_embed_signup_scroll -->
+          </form>
+        </div> <!-- end #mc_embed_signup -->
+        <!-- 这个 JS 用于 Mailchimp 表单验证和提交处理 -->
+        <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+        <script type="text/javascript">
+          (function($) {
+            window.fnames = new Array();
+            window.ftypes = new Array();
+            fnames[0] = 'EMAIL'; ftypes[0] = 'email';
+            fnames[1] = 'FNAME'; ftypes[1] = 'text';
+            fnames[2] = 'LNAME'; ftypes[2] = 'text';
+            fnames[3] = 'ADDRESS'; ftypes[3] = 'address';
+            fnames[4] = 'PHONE'; ftypes[4] = 'phone';
+            fnames[5] = 'BIRTHDAY'; ftypes[5] = 'birthday';
+            fnames[6] = 'COMPANY'; ftypes[6] = 'text';
+          }(jQuery));
+          var $mcj = jQuery.noConflict(true);
+        </script>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Xalert. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>
