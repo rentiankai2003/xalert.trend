@@ -8,61 +8,69 @@
   <!-- Favicon -->
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
-  <!-- 自定义字体 (如果有，请替换为有效的字体文件) -->
-  <style>
-    @font-face {
-      font-family: 'Artypa';
-      src: url('Artypa.woff2') format('woff2'),
-           url('Artypa.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
-    }
-  </style>
+  <!-- Digital font for title -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
 
-  <!-- Mailchimp 默认 CSS（可选保留） -->
+  <!-- Mailchimp CSS (optional) -->
   <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
 
   <style>
-    /* 定义主题色变量 */
     :root {
       --bg-start: #0d0d0d;
-      --bg-end: #333333;
+      --bg-end: #1a1a1a;
       --accent: #FFD700;
       --text-color: #fff;
-      --btn-bg: rgba(0, 0, 0, 0.7);
-      --btn-hover: rgba(0, 0, 0, 0.9);
+      --btn-bg: linear-gradient(135deg, #ff8a00, #e52e71);
+      --btn-hover: linear-gradient(135deg, #e52e71, #ff8a00);
       --card-bg: rgba(255, 255, 255, 0.1);
       --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     }
 
-    /* 背景动画 */
+    /* Digital animated background with subtle overlay */
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      height: 100%;
+      background: linear-gradient(270deg, var(--bg-start), var(--bg-end));
+      background-size: 400% 400%;
+      animation: gradientShift 60s ease infinite;
+      color: var(--accent);
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Digital overlay effect */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="100" y2="100" stroke="%23ffffff" stroke-opacity="0.05" stroke-width="1"/><line x1="100" y1="0" x2="0" y2="100" stroke="%23ffffff" stroke-opacity="0.05" stroke-width="1"/></svg>');
+      pointer-events: none;
+      z-index: 0;
+    }
+
     @keyframes gradientShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Arial', sans-serif;
-      height: 100%;
-      background: linear-gradient(270deg, var(--bg-start), var(--bg-end), var(--bg-start));
-      background-size: 800% 800%;
-      animation: gradientShift 60s ease infinite;
-      color: var(--accent);
-    }
-
     header {
       text-align: center;
       padding: 3rem 1rem 2rem;
       background: transparent;
+      position: relative;
+      z-index: 1;
     }
 
     header h1 {
       margin: 0;
       font-size: 3.5rem;
-      font-family: 'Artypa', Arial, sans-serif;
+      font-family: 'Orbitron', sans-serif;
       color: var(--accent);
       text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     }
@@ -70,7 +78,7 @@
     header p {
       margin-top: 0.5rem;
       font-size: 1.3rem;
-      font-family: 'Artypa', Arial, sans-serif;
+      font-family: Arial, sans-serif;
       color: var(--accent);
     }
 
@@ -78,6 +86,8 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 2rem;
+      position: relative;
+      z-index: 1;
     }
 
     .section {
@@ -92,7 +102,7 @@
     .section h2 {
       margin-top: 0;
       font-size: 2rem;
-      font-family: 'Artypa', Arial, sans-serif;
+      font-family: 'Orbitron', sans-serif;
       color: var(--accent);
       border-bottom: 2px solid var(--accent);
       display: inline-block;
@@ -116,7 +126,7 @@
     .buttons a {
       text-decoration: none;
       padding: 0.8rem 1.5rem;
-      color: var(--accent);
+      color: var(--text-color);
       background: var(--btn-bg);
       border-radius: 5px;
       font-size: 1rem;
@@ -142,12 +152,12 @@
       color: var(--accent);
     }
 
-    /* Mailchimp 表单样式 */
+    /* Mailchimp Form Styles */
     #mc_embed_signup {
       background: transparent;
       color: var(--accent);
       width: 100%;
-      font-family: 'Artypa', Arial, sans-serif;
+      font-family: Arial, sans-serif;
       border: none;
       padding: 1rem;
     }
@@ -170,12 +180,14 @@
 
     #mc_embed_signup .button {
       background: var(--btn-bg);
-      color: var(--accent);
-      border: 1px solid var(--accent);
+      color: var(--text-color);
+      border: none;
       border-radius: 4px;
-      padding: 0.6rem 1.2rem;
+      padding: 0.8rem 1.5rem;
       cursor: pointer;
       transition: background 0.3s, transform 0.3s;
+      font-size: 1rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.4);
     }
 
     #mc_embed_signup .button:hover {
@@ -183,10 +195,40 @@
       transform: translateY(-2px);
     }
 
-    /* 隐藏 Mailchimp 默认提示 */
+    /* Hide Mailchimp default hints */
     #mc_embed_signup .indicates-required,
     #mc_embed_signup .refferal_badge {
       display: none;
+    }
+
+    /* Candle Pattern Detection Table Styles */
+    .candle-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    .candle-table th, .candle-table td {
+      border: 1px solid var(--accent);
+      padding: 0.5rem;
+      text-align: left;
+    }
+
+    .candle-table th {
+      background: var(--btn-bg);
+      color: var(--text-color);
+    }
+
+    .candle-table tr:nth-child(even) {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .candle-table caption {
+      caption-side: top;
+      font-size: 1.2rem;
+      font-family: 'Orbitron', sans-serif;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
     }
   </style>
 </head>
@@ -198,44 +240,292 @@
   </header>
 
   <div class="container">
-    <!-- 关于 Xalert -->
+    <!-- About Section -->
     <section class="section">
       <h2>About Xalert</h2>
       <p>
-        Xalert 提供实时的 AI 驱动警报，助您抢先掌握潜在威胁与机遇。从金融洞察到安全预警，Xalert 利用前沿科技让您时刻做好准备。
+        Xalert provides real-time AI-driven alerts to keep you informed and ahead of potential threats and opportunities.
+        From financial insights to security warnings, our cutting-edge technology ensures you're always prepared.
       </p>
     </section>
 
-    <!-- Beta 功能与工作原理 -->
+    <!-- Beta Features & How It Works Section -->
     <section class="section">
       <h2>Beta Features &amp; How It Works</h2>
       <ul>
-        <li>先进的 AI 风险与机遇预警平台</li>
-        <li>集成 Telegram 实现实时通知</li>
-        <li>邮件订阅，第一时间送达重要事件信息</li>
+        <li>Advanced AI risk and opportunity alerts platform</li>
+        <li>Integration with Telegram for real-time notifications</li>
+        <li>Email subscriptions to deliver critical event updates directly to your inbox</li>
       </ul>
     </section>
 
-    <!-- 社群连接 -->
+    <!-- Get Connected Section -->
     <section class="section">
       <h2>Get Connected</h2>
-      <p>加入我们的社群，时刻获取最新动态：</p>
+      <p>Join our community and stay updated:</p>
       <div class="buttons">
-        <!-- 已移除 Discord 按钮 -->
         <a href="https://t.me/+wpD6NwAQaS83N2Y0" target="_blank">Join Our Telegram</a>
       </div>
       <p style="margin-top: 1.5rem;">
-        如需定制市场监控或交易工具，请联系 
+        For custom market monitoring or trading tool modules, please contact 
         <strong><a href="mailto:xalert.trend@gmail.com" style="color: var(--accent); text-decoration: underline;">xalert.trend@gmail.com</a></strong>
       </p>
+      <h3 style="margin-top: 2rem; font-family: 'Orbitron', sans-serif; color: var(--accent);">
+        Candle Pattern Detection
+      </h3>
+      <table class="candle-table">
+        <caption>Candle Pattern Detection Table</caption>
+        <thead>
+          <tr>
+            <th>Pattern Signal</th>
+            <th>Type</th>
+            <th>Characteristics</th>
+            <th>Win Rate (%)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Three Black Crows</td>
+            <td>Bearish</td>
+            <td>Three consecutive long bearish candles, opening near previous close</td>
+            <td>70%</td>
+          </tr>
+          <tr>
+            <td>Three White Soldiers</td>
+            <td>Bullish</td>
+            <td>Three consecutive long bullish candles, closing near the high</td>
+            <td>72%</td>
+          </tr>
+          <tr>
+            <td>Abandoned Baby</td>
+            <td>Reversal</td>
+            <td>Doji appears with clear gaps before and after</td>
+            <td>80%</td>
+          </tr>
+          <tr>
+            <td>Hanging Man</td>
+            <td>Bearish</td>
+            <td>Long lower shadow with a small body, appears in an uptrend</td>
+            <td>65%</td>
+          </tr>
+          <tr>
+            <td>Hammer</td>
+            <td>Bullish</td>
+            <td>Long lower shadow with a small body, appears in a downtrend</td>
+            <td>68%</td>
+          </tr>
+          <tr>
+            <td>Morning Star</td>
+            <td>Bullish</td>
+            <td>Combination of long bearish, small body, and long bullish candle</td>
+            <td>75%</td>
+          </tr>
+          <tr>
+            <td>Morning Doji Star</td>
+            <td>Bullish</td>
+            <td>Variant of Morning Star with a Doji in the middle</td>
+            <td>78%</td>
+          </tr>
+          <tr>
+            <td>Evening Star</td>
+            <td>Bearish</td>
+            <td>Combination of long bullish, small body, and long bearish candle</td>
+            <td>74%</td>
+          </tr>
+          <tr>
+            <td>Evening Doji Star</td>
+            <td>Bearish</td>
+            <td>Variant of Evening Star with a Doji in the middle</td>
+            <td>77%</td>
+          </tr>
+          <tr>
+            <td>Piercing Pattern</td>
+            <td>Bullish</td>
+            <td>Bullish candle closes above the midpoint of the previous bearish candle</td>
+            <td>68%</td>
+          </tr>
+          <tr>
+            <td>Dark Cloud Cover</td>
+            <td>Bearish</td>
+            <td>Bearish candle closes below the midpoint of the previous bullish candle</td>
+            <td>67%</td>
+          </tr>
+          <tr>
+            <td>Hikkake</td>
+            <td>False Breakout</td>
+            <td>Catches trend reversal after a false breakout</td>
+            <td>73%</td>
+          </tr>
+          <tr>
+            <td>Advance Block</td>
+            <td>Bearish</td>
+            <td>Three bullish candles gradually weakening, indicating insufficient buying power</td>
+            <td>62%</td>
+          </tr>
+          <tr>
+            <td>Three Stars in South</td>
+            <td>Bullish</td>
+            <td>Three small bearish candles with progressively lower lows, showing exhaustion</td>
+            <td>70%</td>
+          </tr>
+          <tr>
+            <td>Rise/Fall 3 Methods</td>
+            <td>Continuation</td>
+            <td>Three adjustment candles confirm trend continuation in a strong trend</td>
+            <td>75%</td>
+          </tr>
+          <tr>
+            <td>Dragonfly Doji</td>
+            <td>Reversal</td>
+            <td>No upper shadow, long lower shadow, appears at the bottom of a downtrend</td>
+            <td>80%</td>
+          </tr>
+          <tr>
+            <td>Kicking</td>
+            <td>Reversal</td>
+            <td>Two gapless candles in reverse order, indicating a strong reversal</td>
+            <td>85%</td>
+          </tr>
+          <tr>
+            <td>Tasuki Gap</td>
+            <td>Continuation</td>
+            <td>Gap not completely filled, confirming trend continuation</td>
+            <td>72%</td>
+          </tr>
+          <tr>
+            <td>Closing Marubozu</td>
+            <td>Continuation</td>
+            <td>Candle's close is the highest or lowest, indicating trend dominance</td>
+            <td>75%</td>
+          </tr>
+          <tr>
+            <td><strong>Dragonfly Doji</strong></td>
+            <td>Reversal</td>
+            <td>Indicates successful bullish reversal at low levels; market may reverse upward</td>
+            <td>85%</td>
+          </tr>
+          <tr>
+            <td><strong>Kicking</strong></td>
+            <td>Reversal</td>
+            <td>Strong reversal signal during extreme volatility, showing powerful trend reversal</td>
+            <td>80%</td>
+          </tr>
+          <tr>
+            <td><strong>Tasuki Gap</strong></td>
+            <td>Continuation</td>
+            <td>Gap not fully filled, indicating the trend may continue in the current direction</td>
+            <td>70%</td>
+          </tr>
+          <tr>
+            <td><strong>Closing Marubozu</strong></td>
+            <td>Continuation</td>
+            <td>Close is the highest or lowest, showing trend dominance</td>
+            <td>75%</td>
+          </tr>
+          <tr>
+            <td><strong>Abandoned Baby</strong></td>
+            <td>Reversal</td>
+            <td>Strong signal of bull-to-bear shift; extremely rare</td>
+            <td>90%</td>
+          </tr>
+          <tr>
+            <td><strong>Evening Star</strong></td>
+            <td>Reversal</td>
+            <td>Top reversal signal indicating increasing bearish strength</td>
+            <td>85%</td>
+          </tr>
+          <tr>
+            <td><strong>Morning Star</strong></td>
+            <td>Reversal</td>
+            <td>Bottom reversal signal indicating increasing bullish strength</td>
+            <td>85%</td>
+          </tr>
+          <tr>
+            <td><strong>Engulfing</strong></td>
+            <td>Reversal</td>
+            <td>Second candle completely engulfs the first, signaling trend reversal</td>
+            <td>80%</td>
+          </tr>
+          <tr>
+            <td><strong>Three Stars In South</strong></td>
+            <td>Reversal</td>
+            <td>Bottom confirmation signal at the end of a downtrend</td>
+            <td>75%</td>
+          </tr>
+          <tr>
+            <td><strong>Hikkake</strong></td>
+            <td>Reversal</td>
+            <td>Strong reversal signal following a false breakout</td>
+            <td>80%</td>
+          </tr>
+          <tr>
+            <td><strong>Conceal Baby Swallow</strong></td>
+            <td>Reversal</td>
+            <td>Three bearish candles followed by a long bullish candle marking reversal</td>
+            <td>85%</td>
+          </tr>
+          <tr>
+            <td><strong>Breakaway</strong></td>
+            <td>Reversal</td>
+            <td>Significant trend change indicating reversal</td>
+            <td>75%</td>
+          </tr>
+          <tr>
+            <td><strong>Advance Block</strong></td>
+            <td>Exhaustion</td>
+            <td>Gradual weakening of bullish power in an uptrend; caution for reversal</td>
+            <td>70%</td>
+          </tr>
+          <tr>
+            <td><strong>Rise / Fall 3 Methods</strong></td>
+            <td>Continuation</td>
+            <td>Indicates the current trend may continue</td>
+            <td>80%</td>
+          </tr>
+          <tr>
+            <td><strong>Kicking By Length</strong></td>
+            <td>Reversal</td>
+            <td>Strong reversal signal determined by the length of gapless candles</td>
+            <td>80%</td>
+          </tr>
+          <tr>
+            <td><strong>Marubozu</strong></td>
+            <td>Continuation</td>
+            <td>Indicates complete dominance by bulls or bears</td>
+            <td>75%</td>
+          </tr>
+          <tr>
+            <td><strong>Ladder Bottom</strong></td>
+            <td>Reversal</td>
+            <td>Indicates depletion of bearish power and imminent bullish takeover</td>
+            <td>85%</td>
+          </tr>
+          <tr>
+            <td><strong>Long Legged Doji</strong></td>
+            <td>Indecision</td>
+            <td>Indicates extremely uncertain market sentiment</td>
+            <td>65%</td>
+          </tr>
+          <tr>
+            <td><strong>Long Line</strong></td>
+            <td>Continuation</td>
+            <td>Indicates strong trend continuation</td>
+            <td>75%</td>
+          </tr>
+          <tr>
+            <td><strong>High Wave Candle</strong></td>
+            <td>Indecision</td>
+            <td>Long upper and lower shadows indicating intense buying and selling pressure</td>
+            <td>70%</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
 
-    <!-- 订阅区域 -->
+    <!-- Subscribe Section -->
     <section class="section subscribe-section">
       <h2>Subscribe to Our Newsletter</h2>
-      <p>订阅获取最新 AI 风险预警和资讯，直接送达您的邮箱。</p>
-
-      <!-- Mailchimp 表单代码 -->
+      <p>Sign up to get the latest AI risk alerts and news delivered to your inbox.</p>
       <div id="mc_embed_shell">
         <div id="mc_embed_signup">
           <form action="https://gmail.us3.list-manage.com/subscribe/post?u=0fe18db96871df06c2c7460d4&amp;id=839fb3740e&amp;f_id=005dc5e1f0"
@@ -250,7 +540,7 @@
                 <div class="response" id="mce-error-response" style="display: none;"></div>
                 <div class="response" id="mce-success-response" style="display: none;"></div>
               </div>
-              <!-- 防止 bot 自动提交 -->
+              <!-- Prevent bot signups -->
               <div aria-hidden="true" style="position: absolute; left: -5000px;">
                 <input type="text" name="b_0fe18db96871df06c2c7460d4_839fb3740e" tabindex="-1" value="">
               </div>
