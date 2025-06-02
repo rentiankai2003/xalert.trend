@@ -190,6 +190,9 @@
     }
 
     #mc_embed_signup .button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       background: var(--btn-bg);
       color: var(--text-color);
       border: none;
@@ -197,11 +200,10 @@
       padding: 0.8rem 1.5rem;
       cursor: pointer;
       transition: background 0.3s, transform 0.3s;
-      font-size: 1rem;
+      font-size: 1.6rem;
       box-shadow: 0 1px 4px rgba(0,0,0,0.4);
       width: 100%;
     }
-
     #mc_embed_signup .button:hover {
       background: var(--btn-hover);
       transform: translateY(-2px);
@@ -637,7 +639,7 @@
           <div aria-hidden="true" style="position: absolute; left: -5000px;">
             <input type="text" name="b_0fe18db96871df06c2c7460d4_839fb3740e" tabindex="-1" value="">
           </div>
-          <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="🚀">
+            <button type="submit" name="subscribe" id="mc-embedded-subscribe" class="button">🚀</button>
         </form>
       </div>
     </section>
